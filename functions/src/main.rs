@@ -21,6 +21,14 @@ fn main() {
     };
 
     println!("The value of y is: {y}");
+
+    // Функции с возвращаемыми значениями.
+
+    let x = five();
+    println!("The value of x is: {x}");
+
+    let x = plus_one(5);
+    println!("The value of x is: {x}");
 }
 
 // В сигнатурах функций обязательно указывается тип каждого параметра.
@@ -31,4 +39,16 @@ fn another_function(x: i32) {
 // Функция с несколькими параметрами.
 fn print_labeled_measurement(value: i32, unit_label: char) {
     println!("The measurement is: {value}{unit_label}");
+}
+
+// Функция возвращает значение 5.
+// Обязательно объявление типа возвращаемого значения.
+fn five() -> i32 {
+    5
+}
+
+// Функция возвращает переданное ей в качестве аргумента значение,
+// увеличенное на единицу.
+fn plus_one(x: i32) -> i32 {
+    x + 1
 }
