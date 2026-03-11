@@ -51,6 +51,10 @@ fn main() {
 
     let r3 = &mut s; // no problem
     println!("{r3}");
+
+    // Висячие ссылки.
+
+    let reference_to_nothing = dangle();
 }
 
 fn calculate_length(s: &String) -> usize {
@@ -61,4 +65,18 @@ fn calculate_length(s: &String) -> usize {
 
 fn change(some_string: &mut String) {
     some_string.push_str(", world");
+}
+
+// Ошибка! Попытка вернуть ссылку на освобожденную область памяти.
+// fn dangle() -> &String {
+//     let s = String::from("hello");
+
+//     &s
+// }
+
+// Перемещаем владение значением s.
+fn dangle() -> String {
+    let s = String::from("hello");
+
+    s
 }
