@@ -1,3 +1,4 @@
+#[derive(Debug)]
 struct Rectangle {
     width: u32,
     height: u32,
@@ -8,6 +9,21 @@ fn main() {
         width: 30,
         height: 50,
     };
+
+    // println!("rect1 is {:?}", rect1);
+    // println!("rect1 is {rect1:?}");
+    println!("rect1 is {rect1:#?}");
+
+    let scale = 2;
+    let rect1 = Rectangle {
+        width: dbg!(30 * scale),
+        height: 50,
+    };
+
+    // Макрос dbg! становится владельцем выражения, печатает номер файла и
+    // строки, где происходит вызов макроса dbg!, вместе с результирующим
+    // значением этого выражения и возвращает владение на значение.
+    dbg!(&rect1);
 
     println!(
         "The area of the rectangle is {} square pixels.",
