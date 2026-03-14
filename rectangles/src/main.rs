@@ -8,12 +8,19 @@ impl Rectangle {
     fn area(&self) -> u32 {
         self.width * self.height
     }
+
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
 }
 
 impl Rectangle {
-    // Допускается называть метод существующим именем поля структуры.
-    fn width(&self) -> bool {
-        self.width > 0
+    // Ассоциированная функция не принимает self, а значит не является методом.
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
     }
 }
 
@@ -23,11 +30,18 @@ fn main() {
         height: 50,
     };
 
-    println!(
-        "The area of the rectangle is {} square pixels.",
-        rect1.area()
-    );
-    if rect1.width() {
-        println!("The rectangle has a nonzero width; it is {}", rect1.width);
-    }
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
+    };
+
+    // Вызов ассоциированной функции с помощью синтаксиса `::`.
+    let sq = Rectangle::square(3);
+
+    println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
+    println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
 }
