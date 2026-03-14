@@ -4,33 +4,30 @@ struct Rectangle {
     height: u32,
 }
 
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
+impl Rectangle {
+    // Допускается называть метод существующим именем поля структуры.
+    fn width(&self) -> bool {
+        self.width > 0
+    }
+}
+
 fn main() {
     let rect1 = Rectangle {
         width: 30,
         height: 50,
     };
 
-    // println!("rect1 is {:?}", rect1);
-    // println!("rect1 is {rect1:?}");
-    println!("rect1 is {rect1:#?}");
-
-    let scale = 2;
-    let rect1 = Rectangle {
-        width: dbg!(30 * scale),
-        height: 50,
-    };
-
-    // Макрос dbg! становится владельцем выражения, печатает номер файла и
-    // строки, где происходит вызов макроса dbg!, вместе с результирующим
-    // значением этого выражения и возвращает владение на значение.
-    dbg!(&rect1);
-
     println!(
         "The area of the rectangle is {} square pixels.",
-        area(&rect1)
+        rect1.area()
     );
-}
-
-fn area(rectangle: &Rectangle) -> u32 {
-    rectangle.width * rectangle.height
+    if rect1.width() {
+        println!("The rectangle has a nonzero width; it is {}", rect1.width);
+    }
 }
