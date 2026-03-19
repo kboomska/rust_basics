@@ -4,12 +4,15 @@
 // crate в корне структуры модулей крейта, известной как дерево модулей.
 
 mod front_of_house {
-    mod hosting {
-        fn add_to_waitlist() {}
+    // Публичный модуль.
+    pub mod hosting {
+        // Публичный метод.
+        pub fn add_to_waitlist() {}
 
         fn seat_at_table() {}
     }
 
+    // Модуль приватный (по умолчанию).
     mod serving {
         fn take_order() {}
 
@@ -17,4 +20,13 @@ mod front_of_house {
 
         fn take_payment() {}
     }
+}
+
+// Два способа вызова функции add_to_waitlist.
+pub fn eat_at_restaurant() {
+    // Absolute path
+    crate::front_of_house::hosting::add_to_waitlist();
+
+    // Relative path
+    front_of_house::hosting::add_to_waitlist();
 }
