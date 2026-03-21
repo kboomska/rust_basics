@@ -30,4 +30,20 @@ fn main() {
         Some(third) => println!("The third element is {third}"),
         None => println!("There is no third element."),
     }
+
+    // let does_not_exist = &v[100]; // index out of bounds!
+    let does_not_exist = v.get(100); // None
+
+    // Пример нарушения правил заимствования, когда изменение вектора
+    // может привести к изменению области занимаемой им памяти, после чего
+    // созданная ранее ссылка на первый элемент будет указывать на
+    // освобожденную память. Borrow checker сигнализирует о таких ошибках!
+
+    let mut v = vec![1, 2, 3, 4, 5];
+
+    let first = &v[0];
+
+    // v.push(6); // Ошибка!
+
+    println!("The first element is: {first}");
 }
