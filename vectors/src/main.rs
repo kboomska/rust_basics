@@ -67,4 +67,38 @@ fn main() {
     for i in &mut v {
         *i += 50;
     }
+
+    // Использование перечислений для хранения множества разных типов.
+
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12),
+    ];
+
+    // Удаление последнего элемента из вектора.
+
+    let mut v = vec![100, 32, 57, 0];
+    let zero = &v.pop();
+
+    match zero {
+        Some(last) => println!("{last}"),
+        None => (),
+    }
+
+    for i in &v {
+        println!("{i}");
+    }
+
+    // Удаление элементов из вектора.
+
+    {
+        let v = vec![1, 2, 3, 4];
+    } // Освобождение памяти вектором и содержащимися в нем значениями.
 }
