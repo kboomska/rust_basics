@@ -6,6 +6,10 @@
 >
 > rustc --version
 
+### Обновление Rust
+>
+> rustup update stable
+
 ### Локальная документация
 >
 > rustup doc
