@@ -2,7 +2,7 @@ use rand::Rng;
 
 fn main() {
     let v = generate_vector();
-    println!("{:?}", v);
+    println!("Vector: {:?}", v);
 
     // Среднее значение списка.
     let mean = vector_mean(&v);
@@ -24,14 +24,8 @@ fn generate_vector() -> Vec<i32> {
 }
 
 /// Вычисление среднего значения для вектора.
-fn vector_mean(vector: &Vec<i32>) -> f64 {
+fn vector_mean(vector: &[i32]) -> f64 {
     let length = vector.len();
-
-    // Сложение всех значений в цикле.
-    // let mut sum = 0;
-    // for value in vector {
-    //     sum += value;
-    // }
 
     // Сумма всех значений используя метод sum для Iter.
     let sum: i32 = vector.iter().sum();
