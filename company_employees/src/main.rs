@@ -5,7 +5,8 @@ fn main() {
 
     println!("Enter \"Add <Name> to <Department>\" to add an employee");
     println!("Enter \"Employees <Department>\" to get a list of department employees");
-    println!("Enter \"exit\" to close the app");
+    println!("Enter \"All\" to get a list of all company employees");
+    println!("Enter \"exit\" to close the app\n");
 
     loop {
         let mut raw_input = String::new();
@@ -40,13 +41,22 @@ fn main() {
                     get_employees(&company, rest);
                 }
             }
+            Some("All") => {
+                if company.is_empty() {
+                    println!("The company has no employees yet.");
+                } else {
+                    let mut departments: Vec<&str> = company.keys().map(|s| s.as_str()).collect();
+                    departments.sort();
+                    for department in departments {
+                        get_employees(&company, department);
+                    }
+                }
+            }
             Some(_) => {
                 println!("You entered: {input}");
             }
         };
     }
-
-    println!("{company:#?}");
 }
 
 fn add_employee(company: &mut HashMap<String, Vec<String>>, employee: &str) {
