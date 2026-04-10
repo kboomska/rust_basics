@@ -70,3 +70,15 @@
 [profile.release]
 panic = 'abort'
 ```
+
+### Отображение обратной трассировки panic! на Windows
+
+>
+> $env:RUST_BACKTRACE=1
+>
+> cargo run
+
+### Отображение обратной трассировки panic! на Linux/MacOS
+
+>
+> RUST_BACKTRACE=1 cargo run
