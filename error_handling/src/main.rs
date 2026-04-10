@@ -88,4 +88,25 @@ fn main() {
     fn read_username_from_file() -> Result<String, Error> {
         fs::read_to_string("hello.txt")
     }
+
+    // Где можно использовать оператор ?
+
+    // Использование ? в функциях с Option<T>
+    fn last_char_of_first_line(text: &str) -> Option<char> {
+        text.lines().next()?.chars().last()
+    }
 }
+
+// main в возвращаемым значением
+
+// В случае успешного завершения программы вернет 0.
+// В противном случае вернет число отличное от 0.
+
+// use std::error::Error;
+// use std::fs::File;
+
+// fn main() -> Result<(), Box<dyn Error>> {
+//     let greeting_file = File::open("hello.txt")?;
+
+//     Ok(())
+// }
