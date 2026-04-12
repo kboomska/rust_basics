@@ -41,3 +41,15 @@ fn main() {
     // let wont_work = Point { x: 5, y: 4.0 }; // Ошибка!
     let wont_work = AnotherPoint { x: 5, y: 4.0 };
 }
+
+// Обобщённые типы данных в объявлении перечислений
+
+enum Option<T> {
+    Some(T),
+    None,
+}
+
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
