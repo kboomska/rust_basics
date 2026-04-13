@@ -74,3 +74,29 @@ fn main() {
 
     println!("New article available! {}", article.summarize());
 }
+
+// Типажи как параметры
+
+// pub fn notify(item: &impl Summary) {
+//     println!("Breaking news! {}", item.summarize());
+// }
+
+// Синтаксис ограничения типажа
+
+pub fn notify<T: Summary>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+
+// Задание нескольких границ типажей с помощью синтаксиса +
+
+// pub fn notify(item: &(impl Summary + Display)) {}
+
+// pub fn notify<T: Summary + Display>(item: &T) {}
+
+// Более ясные границы типажа с помощью where
+
+// fn some_function<T, U>(t: &T, u: &U) -> i32
+// where
+//     T: Display + Clone,
+//     U: Clone + Debug,
+// {
