@@ -105,3 +105,24 @@ impl<'a> ImportantExcerpt<'a> {
         self.part
     }
 }
+
+// Статическое время жизни
+
+// Данная ссылка может жить всю продолжительность работы программы.
+// let s: &'static str = "I have a static lifetime.";
+
+// Обобщённые типы параметров, ограничения типажей и времена жизни вместе
+
+use std::fmt::Display;
+
+fn longest_with_an_announcement<'a, T>(
+    x: &'a str,
+    y: &'a str,
+    ann: T,
+) -> &'a str
+where
+    T: Display,
+{
+    println!("Announcement! {ann}");
+    if x.len() > y.len() { x } else { y }
+}
