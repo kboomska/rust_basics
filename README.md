@@ -3,62 +3,96 @@
 ## 🖥️ Консольные команды
 
 ### Проверка установленной версии Rust
->
-> rustc --version
+
+```bash
+rustc --version
+```
 
 ### Обновление Rust
->
-> rustup update stable
+
+```bash
+rustup update stable
+```
 
 ### Локальная документация
->
-> rustup doc
+
+```bash
+rustup doc
+```
 
 ### Запуск программы на Windows
->
-> rustc main.rs
-> .\main.exe
+
+```bash
+rustc main.rs
+.\main.exe
+```
 
 ### Запуск программы на Linux/MacOS
->
-> rustc main.rs
-> ./main.exe
+
+```bash
+rustc main.rs
+./main.exe
+```
 
 ### Создание проекта (бинарного крейта) с помощью Cargo
->
-> cargo new hello_world
+
+```bash
+cargo new hello_world
+```
 
 ### Создание библиотеки (библиотечного крейта) с помощью Cargo
->
-> cargo new hello_world --lib
+
+```bash
+cargo new hello_world --lib
+```
 
 ### Создание проекта Cargo без использования системы контроля версий
->
-> cargo new --vcs=none hello_world
+
+```bash
+cargo new --vcs=none hello_world
+```
 
 ### Сборка Cargo проекта
->
-> cargo build
+
+```bash
+cargo build
+```
 
 ### Сборка и запуск Cargo проекта
->
-> cargo run
+
+```bash
+cargo run
+```
 
 ### Проверка компилируемости кода без создания исполняемого файла
->
-> cargo check
+
+```bash
+cargo check
+```
 
 ### Сборка финальной версии (Release)
->
-> cargo build --release
+
+```bash
+cargo build --release
+```
 
 ### Обновление пакета для получения новой версии
->
-> cargo update
+
+```bash
+cargo update
+```
 
 ### Сборка локальной документации, предоставляемой всеми зависимостями в проекте
->
-> cargo doc --open
+
+```bash
+cargo doc --open
+```
+
+### Запуск тестов
+
+```bash
+cargo test
+```
 
 ## 💡 Советы
 
@@ -73,12 +107,13 @@ panic = 'abort'
 
 ### Отображение обратной трассировки panic! на Windows
 
->
-> $env:RUST_BACKTRACE=1
->
-> cargo run
+```bash
+$env:RUST_BACKTRACE=1
+cargo run
+```
 
 ### Отображение обратной трассировки panic! на Linux/MacOS
 
->
-> RUST_BACKTRACE=1 cargo run
+```bash
+RUST_BACKTRACE=1 cargo run
+```
