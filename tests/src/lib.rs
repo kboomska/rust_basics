@@ -11,6 +11,10 @@ fn prints_and_returns_10(a: i32) -> i32 {
     10
 }
 
+pub fn sum(left: u64, right: u64) -> u64 {
+    left + right
+}
+
 pub struct Guess {
     value: i32,
 }
