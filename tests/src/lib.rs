@@ -56,4 +56,17 @@ mod tests {
     fn greater_than_100() {
         Guess::new(200);
     }
+
+    // Использование Result<T, E> в тестах
+
+    #[test]
+    fn it_works() -> Result<(), String> {
+        let result = add_two(2);
+
+        if result == 4 {
+            Ok(())
+        } else {
+            Err(String::from("two plus two does not equal four"))
+        }
+    }
 }
