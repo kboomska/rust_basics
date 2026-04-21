@@ -161,3 +161,23 @@ cargo run
 ```bash
 RUST_BACKTRACE=1 cargo run
 ```
+
+### Устанавливаем переменную окружения и запускаем программу на Windows
+
+> ⚠️ **Переменная окружения IGNORE_CASE сохранится до конца сеанса работы консоли**
+
+```bash
+$Env:IGNORE_CASE=1; cargo run -- to poem.txt
+```
+
+### Отключаем переменную окружения на Windows
+
+```bash
+Remove-Item Env:IGNORE_CASE
+```
+
+### Устанавливаем переменную окружения и запускаем программу на Linux/MacOS
+
+```bash
+IGNORE_CASE=1 cargo run -- to poem.txt
+```
