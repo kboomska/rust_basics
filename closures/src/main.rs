@@ -69,4 +69,37 @@ fn main() {
 
     let s = example_closure(String::from("hello"));
     // let n = example_closure(5); // Ошибка! Тип определен ранее String
+
+    // Захват ссылок или передача владения
+
+    // Захват неизменяемой ссылки
+    let list = vec![1, 2, 3];
+    println!("Before defining closure: {list:?}");
+
+    let only_borrows = || println!("From closure: {list:?}");
+
+    println!("Before calling closure: {list:?}");
+    only_borrows();
+    println!("After calling closure: {list:?}");
+
+    // Захват изменяемой ссылки
+    let mut list = vec![1, 2, 3];
+    println!("Before defining closure: {list:?}");
+
+    let mut borrows_mutably = || list.push(7);
+
+    // Неизменяемое заимствование недоступно, при наличии изменяемого
+    // заимствования.
+    // println!("Before calling closure: {list:?}"); Ошибка!
+    borrows_mutably();
+    println!("After calling closure: {list:?}");
+
+    // Использование move для принуждения замыкания потока принять на себя
+    // владение list
+    let list = vec![1, 2, 3];
+    println!("Before defining closure: {list:?}");
+
+    thread::spawn(move || println!("From thread: {list:?}"))
+        .join()
+        .unwrap();
 }
