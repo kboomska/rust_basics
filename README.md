@@ -181,3 +181,15 @@ Remove-Item Env:IGNORE_CASE
 ```bash
 IGNORE_CASE=1 cargo run -- to poem.txt
 ```
+
+### Управление количеством оптимизаций при компиляции в зависимости от профиля
+
+Ниже представлены значения по умолчанию, которые можно переопределить в Cargo.toml:
+
+```toml
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
+```
