@@ -64,6 +64,12 @@ cargo build
 cargo run
 ```
 
+### Сборка и запуск конкретного Cargo проекта из рабочего пространства
+
+```bash
+cargo run -p adder
+```
+
 ### Проверка компилируемости кода без создания исполняемого файла
 
 ```bash
@@ -211,3 +217,65 @@ opt-level = 0
 [profile.release]
 opt-level = 3
 ```
+
+### Пример создания рабочего пространства Cargo
+
+1. Создаем новый каталог рабочего пространства
+
+    ```bash
+    mkdir add
+    cd add
+    ```
+
+2. Создаем файл `Cargo.toml` с конфигурацией рабочего окружения
+
+    ```toml
+    [workspace]
+    resolver = "3"
+    members = []
+    ```
+
+3. Создаем исполняемый крейт
+
+    ```bash
+    cargo new adder
+    ```
+
+4. Создаем рабочее пространство
+
+    ```bash
+    cargo build
+    ```
+
+5. Файлы в каталоге `add` должны выглядеть следующим образом
+
+    ```text
+    ├── Cargo.lock
+    ├── Cargo.toml
+    ├── adder
+    │   ├── Cargo.toml
+    │   └── src
+    │       └── main.rs
+    └── target
+    ```
+
+6. Создаем библиотечный крейт
+
+    ```bash
+    cargo new add_one --lib
+    ```
+
+7. Файл `Cargo.toml` верхнего уровня должен выглядеть следующим образом
+
+    ```toml
+    [workspace]
+    resolver = "3"
+    members = ["adder", "add_one"]
+    ```
+
+8. Для использования функциональности библиотечного крейта add_one в бинарном крейте adder, добавим необходимую зависимость в файле `adder/Cargo.toml`
+
+    ```toml
+    [dependencies]
+    add_one = { path = "../add_one" }
+    ```
