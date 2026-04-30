@@ -138,6 +138,24 @@ cargo test -- --include-ignored
 cargo test --test integration_test
 ```
 
+### Публикация библиотеки на Crates.io
+
+```bash
+cargo publish
+```
+
+### Скрытие устаревших версий библиотеки на Crates.io
+
+```bash
+cargo yank --vers 1.0.1
+```
+
+### Восстановление скрытой версий библиотеки на Crates.io
+
+```bash
+cargo yank --vers 1.0.1 --undo
+```
+
 ## 💡 Советы
 
 ### Уменьшение размера исполняемого файла за счет отключения раскрутки стека при панике
