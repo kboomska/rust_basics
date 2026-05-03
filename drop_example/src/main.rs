@@ -8,12 +8,23 @@ impl Drop for CustomSmartPointer {
     }
 }
 
+// fn main() {
+//     let c = CustomSmartPointer {
+//         data: String::from("my stuff"),
+//     };
+//     let d = CustomSmartPointer {
+//         data: String::from("other stuff"),
+//     };
+//     println!("CustomSmartPointers created");
+// }
+
+// Раннее удаление значения с помощью std::mem::drop
+
 fn main() {
     let c = CustomSmartPointer {
-        data: String::from("my stuff"),
+        data: String::from("some data"),
     };
-    let d = CustomSmartPointer {
-        data: String::from("other stuff"),
-    };
-    println!("CustomSmartPointers created");
+    println!("CustomSmartPointer created");
+    drop(c);
+    println!("CustomSmartPointer dropped before the end of main");
 }
