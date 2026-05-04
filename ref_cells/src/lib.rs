@@ -58,6 +58,13 @@ mod tests {
         fn send(&self, message: &str) {
             // Получение изменяемой ссылки с помощью borrow_mut()
             self.sent_messages.borrow_mut().push(String::from(message));
+
+            // Паника во время выполнения из-за множественных изменяемых ссылок
+            // let mut one_borrow = self.sent_messages.borrow_mut();
+            // let mut two_borrow = self.sent_messages.borrow_mut();
+
+            // one_borrow.push(String::from(message));
+            // two_borrow.push(String::from(message));
         }
     }
 
