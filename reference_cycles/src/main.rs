@@ -1,6 +1,6 @@
 use crate::List::{Cons, Nil};
 use std::cell::RefCell;
-use std::rc::Rc;
+use std::rc::{Rc, Weak};
 
 #[derive(Debug)]
 enum List {
@@ -15,6 +15,13 @@ impl List {
             Nil => None,
         }
     }
+}
+
+#[derive(Debug)]
+struct Node {
+    value: i32,
+    parent: RefCell<Weak<Node>>, // Ссылается, но не владеет
+    children: RefCell<Vec<Rc<Node>>>,
 }
 
 fn main() {
@@ -39,4 +46,27 @@ fn main() {
     // Uncomment the next line to see that we have a cycle;
     // it will overflow the stack.
     // println!("a next item = {:?}", a.tail());
+
+    // Создание древовидной структуры данных: Node с дочерними узлами
+
+    let leaf = Rc::new(Node {
+        value: 3,
+        parent: RefCell::new(Weak::new()),
+        children: RefCell::new(vec![]),
+    });
+
+    println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+
+    let branch = Rc::new(Node {
+        value: 5,
+        parent: RefCell::new(Weak::new()),
+        children: RefCell::new(vec![Rc::clone(&leaf)]),
+    });
+
+    *leaf.parent.borrow_mut() = Rc::downgrade(&branch); // создание слабой ссылки
+
+    println!("leaf parent = {:?}", leaf.parent.borrow().upgrade());
+
+    println!("branch rc count {}", Rc::strong_count(&branch));
+    println!("branch weak count {}", Rc::weak_count(&branch));
 }
