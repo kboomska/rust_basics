@@ -17,4 +17,15 @@ fn main() {
     }
 
     // handle.join().unwrap(); // Приводит к чередованию вывода
+
+    // Использование move-замыканий в потоках
+
+    let v = vec![1, 2, 3];
+
+    // Замыкание забирает используемые значения во владение с помощью move
+    let handle = thread::spawn(move || {
+        println!("Here's a vector: {v:?}");
+    });
+
+    handle.join().unwrap();
 }
