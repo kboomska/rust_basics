@@ -8,7 +8,8 @@ fn main() {
 
     thread::spawn(move || {
         let val = String::from("hi");
-        tx.send(val).unwrap();
+        tx.send(val).unwrap(); // Передача владения
+        // println!("val is {val}"); // Ошибка
     });
 
     let received = rx.recv().unwrap();
