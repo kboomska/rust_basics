@@ -31,6 +31,12 @@ impl Post {
             self.state = Some(s.approve())
         }
     }
+
+    pub fn reject(&mut self) {
+        if let Some(s) = self.state.take() {
+            self.state = Some(s.reject())
+        }
+    }
 }
 
 /// Типаж состояния.
@@ -39,6 +45,7 @@ trait State {
     // вызове с обёрткой Box, содержащей наш тип.
     fn request_review(self: Box<Self>) -> Box<dyn State>;
     fn approve(self: Box<Self>) -> Box<dyn State>;
+    fn reject(self: Box<Self>) -> Box<dyn State>;
     fn content<'a>(&self, post: &'a Post) -> &'a str {
         ""
     }
@@ -55,6 +62,10 @@ impl State for Draft {
     fn approve(self: Box<Self>) -> Box<dyn State> {
         self
     }
+
+    fn reject(self: Box<Self>) -> Box<dyn State> {
+        self
+    }
 }
 
 /// Структура состояния запроса на проверку.
@@ -68,6 +79,10 @@ impl State for PendingReview {
     fn approve(self: Box<Self>) -> Box<dyn State> {
         Box::new(Published {})
     }
+
+    fn reject(self: Box<Self>) -> Box<dyn State> {
+        Box::new(Draft {})
+    }
 }
 
 /// Структура состояния публикации записи.
@@ -79,6 +94,10 @@ impl State for Published {
     }
 
     fn approve(self: Box<Self>) -> Box<dyn State> {
+        self
+    }
+
+    fn reject(self: Box<Self>) -> Box<dyn State> {
         self
     }
 
