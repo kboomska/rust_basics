@@ -13,7 +13,9 @@ impl Post {
     }
 
     pub fn add_text(&mut self, text: &str) {
-        self.content.push_str(text);
+        if self.state.as_ref().unwrap().is_editable() {
+            self.content.push_str(text);
+        }
     }
 
     pub fn content(&self) -> &str {
@@ -49,6 +51,9 @@ trait State {
     fn content<'a>(&self, post: &'a Post) -> &'a str {
         ""
     }
+    fn is_editable(&self) -> bool {
+        false
+    }
 }
 
 /// Структура состояния черновика.
@@ -65,6 +70,10 @@ impl State for Draft {
 
     fn reject(self: Box<Self>) -> Box<dyn State> {
         self
+    }
+
+    fn is_editable(&self) -> bool {
+        true
     }
 }
 

@@ -9,6 +9,7 @@ fn main() {
     post.request_review();
     assert_eq!("", post.content());
 
+    post.add_text(" yesterday");
     post.reject();
     assert_eq!("", post.content());
 
