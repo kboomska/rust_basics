@@ -88,6 +88,12 @@ cargo update
 cargo doc --open
 ```
 
+### Добавление крейта в Cargo проект
+
+```bash
+cargo add trpl
+```
+
 ## 🧪 Тестирование проектов
 
 ### Запуск тестов
