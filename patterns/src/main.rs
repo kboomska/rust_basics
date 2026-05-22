@@ -39,4 +39,8 @@ fn main() {
     for (index, value) in v.iter().enumerate() {
         println!("{value} is at index {index}");
     }
+
+    // Инструкция let
+
+    let (x, y, _) = (1, 2, 3);
 }
