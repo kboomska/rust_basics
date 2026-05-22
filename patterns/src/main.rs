@@ -1,4 +1,6 @@
 fn main() {
+    // Условные выражения if let
+
     let favorite_color: Option<&str> = None;
     let is_tuesday = false;
     let age: Result<u8, _> = "34".parse();
@@ -15,5 +17,18 @@ fn main() {
         }
     } else {
         println!("Using blue as the background color");
+    }
+
+    // Условные циклы while let
+
+    let (tx, rx) = std::sync::mpsc::channel();
+    std::thread::spawn(move || {
+        for val in [1, 2, 3] {
+            tx.send(val).unwrap();
+        }
+    });
+
+    while let Ok(value) = rx.recv() {
+        println!("{value}");
     }
 }
