@@ -179,4 +179,32 @@ fn main() {
     }
 
     println!("{s:?}");
+
+    // Игнорирование оставшихся частей значения с помощью ..
+
+    struct PointThreeDimension {
+        x: i32,
+        y: i32,
+        z: i32,
+    }
+
+    let origin = PointThreeDimension { x: 0, y: 0, z: 0 };
+
+    match origin {
+        PointThreeDimension { x, .. } => println!("x is {x}"),
+    }
+
+    let numbers = (2, 4, 8, 16, 32);
+
+    match numbers {
+        (first, .., last) => {
+            println!("Some numbers: {first}, {last}");
+        }
+    }
+
+    // match numbers {
+    //     (.., second, ..) => { // Ошибка! Неоднозначное использование ..
+    //         println!("Some numbers: {second}")
+    //     }
+    // }
 }
