@@ -236,4 +236,22 @@ fn main() {
         4 | 5 | 6 if y => println!("yes"),
         _ => println!("no"),
     }
+
+    // Связывание @
+
+    enum Greetings {
+        Hello { id: i32 },
+    }
+
+    let msg = Greetings::Hello { id: 5 };
+
+    match msg {
+        Greetings::Hello { id: id @ 3..=7 } => {
+            println!("Found an id in range: {id}")
+        }
+        Greetings::Hello { id: 10..=12 } => {
+            println!("Found an id in another range")
+        }
+        Greetings::Hello { id } => println!("Found some other id: {id}"),
+    }
 }
