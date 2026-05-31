@@ -162,4 +162,21 @@ fn main() {
             println!("Some numbers: {first}, {third}, {fifth}");
         }
     }
+
+    // Игнорирование неиспользуемой переменной, начинающейся с символа _ в имени
+
+    let _x = 5; // Нет предупреждения.
+    let y = 10;
+
+    let s = Some(String::from("Hello!"));
+
+    // if let Some(_s) = s {
+    //     println!("found a string");
+    // }
+
+    if let Some(_) = s {
+        println!("found a string");
+    }
+
+    println!("{s:?}");
 }
