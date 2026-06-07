@@ -81,6 +81,16 @@ fn main() {
         add_to_count(3);
         println!("COUNTER: {}", *(&raw const COUNTER));
     }
+
+    // Реализация небезопасных типажей
+
+    unsafe trait Foo {
+        // methods go here
+    }
+
+    unsafe impl Foo for i32 {
+        // method implementations go here
+    }
 }
 
 fn split_at_mut(values: &mut [i32], mid: usize) -> (&mut [i32], &mut [i32]) {
