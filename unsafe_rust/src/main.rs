@@ -43,12 +43,43 @@ fn main() {
 
     // Использование extern функций для вызова внешнего кода
 
+    // unsafe extern "C" {
+    //     fn abs(input: i32) -> i32;
+    // }
+
+    // unsafe {
+    //     println!("Absolute value of -3 according to C: {}", abs(-3));
+    // }
+
+    // Объявление функции в как безопасной.
+
     unsafe extern "C" {
-        fn abs(input: i32) -> i32;
+        safe fn abs(input: i32) -> i32;
+    }
+
+    println!("Absolute value of -3 according to C: {}", abs(-3));
+
+    // Получение доступа и внесение изменений в изменяемую статическую переменную
+
+    static HELLO_WORLD: &str = "Hello, world!"; // Неизменяемая статическая переменная
+
+    println!("value is: {HELLO_WORLD}");
+
+    static mut COUNTER: u32 = 0; // Изменяемая статическая переменная
+
+    /// SAFETY: Calling this from more than a single thread at a time is undefined
+    /// behavior, so you *must* guarantee you only call it from a single thread at
+    /// a time.
+    unsafe fn add_to_count(inc: u32) {
+        unsafe {
+            COUNTER += inc;
+        }
     }
 
     unsafe {
-        println!("Absolute value of -3 according to C: {}", abs(-3));
+        // SAFETY: This is only called from a single thread in `main`.
+        add_to_count(3);
+        println!("COUNTER: {}", *(&raw const COUNTER));
     }
 }
 
