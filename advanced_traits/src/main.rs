@@ -52,6 +52,9 @@ fn main() {
 
     let p = Point { x: 1, y: 3 };
     p.outline_print();
+
+    let w = Wrapper(vec![String::from("hello"), String::from("world")]);
+    println!("w = {w}");
 }
 
 trait Pilot {
@@ -119,5 +122,13 @@ impl OutlinePrint for Point {}
 impl fmt::Display for Point {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "({}, {})", self.x, self.y)
+    }
+}
+
+struct Wrapper(Vec<String>);
+
+impl fmt::Display for Wrapper {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[{}]", self.0.join(", "))
     }
 }
